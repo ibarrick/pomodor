@@ -6,7 +6,7 @@ import indigo from '@material-ui/core/colors/indigo'
 import pink from '@material-ui/core/colors/pink'
 
 export const ThemeConfig = ({ children }) => {
-  const darkModeCached = +localStorage.getItem('darkMode')
+  const darkModeCached = true
   const [darkTheme, setDarkTheme] = useState(darkModeCached)
 
   const darkMode = useSelector((state) => +state.settings.darkMode)
@@ -24,7 +24,7 @@ export const ThemeConfig = ({ children }) => {
         main: pink[300],
       },
       background: {
-        default: darkTheme ? '#121212' : '#fafafa',
+        default: darkTheme ? '#2f3437' : '#fafafa',
       },
       text: {
         primary: darkTheme ? '#DDE0F4' : '#424242',

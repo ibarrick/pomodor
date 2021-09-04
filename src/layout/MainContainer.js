@@ -24,7 +24,6 @@ export const MainContainer = () => {
   return (
     <BackLayer theme={theme} dark={darkMode || darkModeCached}>
       <FrontLayer sidenav={sidenav} theme={theme} ref={mainRef}>
-        {progress && <LinearProgress color="secondary" />}
         <ScrollToTop container={mainRef} />
         <Box pb={2} pt={5} flex={1}>
           <Switch>

@@ -11,34 +11,6 @@ export const Footer = () => {
 
   return (
     <Container>
-      <Text align="center">
-        Made with <Heart color="secondary" /> by Sasha Drmic
-      </Text>
-
-      <CoffeeLink
-        href="https://www.buymeacoffee.com/sashadrmic"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <CoffeeImage src={coffee} alt="Buy me a coffee" />
-      </CoffeeLink>
-
-      <Box display="flex" justifyContent="space-between" width={60} m="auto">
-        <a
-          href="https://twitter.com/sasha_drmic"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Twitter theme={theme} />
-        </a>
-        <a
-          href="https://github.com/sasa95/pomodor"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <GitHub theme={theme} />
-        </a>
-      </Box>
     </Container>
   )
 }
