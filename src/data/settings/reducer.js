@@ -1,11 +1,11 @@
 export const initialState = {
-  workDuration: 25,
-  shortBreakDuration: 5,
+  workDuration: 50,
+  shortBreakDuration: 10,
   longBreakDuration: 20,
   rounds: 4,
   showTimerInTitle: true,
   showNotifications: true,
-  darkMode: false,
+  darkMode: true,
   autostart: false,
   firstDayOfTheWeek: 'Monday',
 }
