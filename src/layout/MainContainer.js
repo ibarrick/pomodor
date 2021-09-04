@@ -16,7 +16,6 @@ import { Footer } from './footer/Footer'
 export const MainContainer = () => {
   const darkMode = useSelector((state) => +state.settings.darkMode)
   const darkModeCached = +JSON.parse(localStorage.getItem('darkMode'))
-  const progress = useSelector((state) => state.progress)
   const sidenav = +useMediaQuery('(min-width:600px) and (min-height:500px)')
   const mainRef = useRef()
   const theme = useTheme()
@@ -77,10 +76,4 @@ const FrontLayer = styled.main`
       width: calc(100% - 92px);
       min-height: calc(100% - 64px);
     `}
-`
-
-const LinearProgress = styled(MatLinearProgress)`
-  position: absolute;
-  top: 0;
-  width: 100%;
 `
