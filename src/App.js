@@ -5,7 +5,6 @@ import { createGlobalStyle } from 'styled-components'
 import { CssBaseline } from '@material-ui/core'
 import { AppBar } from './layout/navigation/AppBar'
 import { MainContainer } from './layout/MainContainer'
-import { firebase } from './firebase/firebase'
 import { setUserInfo } from './data/auth/actions'
 import { startSetSettings } from './data/settings/actions'
 import { ThemeConfig } from './ThemeConfig'
@@ -17,31 +16,7 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(async (user) => {
-      dispatch(setProgressVisibility(true))
-
-      if (user) {
-        const userInfo = { uid: user.uid }
-        userInfo.creationTime = user.metadata.creationTime
-
-        if (user.providerData && user.providerData.length) {
-          userInfo.name = user.providerData[0].displayName
-          userInfo.photo = user.providerData[0].photoURL
-        }
-
-        dispatch(setUserInfo(userInfo))
-
-        await Promise.all([
-          dispatch(startSetSettings()),
-          dispatch(startSetLabels()),
-          dispatch(startSetSessions()),
-        ])
-
-        dispatch(setProgressVisibility(false))
-      } else {
-        firebase.auth().signInAnonymously()
-      }
-    })
+    
   }, [dispatch])
 
   return (
@@ -49,7 +24,6 @@ const App = () => {
       <CssBaseline />
       <GlobalStyle />
       <BrowserRouter>
-        <AppBar />
         <MainContainer />
       </BrowserRouter>
     </ThemeConfig>
