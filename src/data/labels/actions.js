@@ -41,7 +41,6 @@ export const addLabel = (label) => ({
 
 export const startAddLabel = (label) => {
   return async (dispatch, getState) => {
-    const uid = getState().auth.uid
 
 
     dispatch(
@@ -60,7 +59,6 @@ export const editLabel = (id, updates) => ({
 
 export const startEditLabel = (id, updates) => {
   return async (dispatch, getState) => {
-    const uid = getState().auth.uid
 
     dispatch(editLabel(id, updates))
 
@@ -74,7 +72,6 @@ export const deleteLabel = (id) => ({
 
 export const startDeleteLabel = (id) => {
   return async (dispatch, getState) => {
-    const uid = getState().auth.uid
 
     dispatch(deleteLabel(id))
 
@@ -88,7 +85,6 @@ export const setLabels = (labels) => ({
 
 export const startSetLabels = () => {
   return async (dispatch, getState) => {
-    const uid = getState().auth.uid
 
 dispatch(setLabels([]))
   }
