@@ -1,4 +1,3 @@
-import fs from '../../firebase/firebase'
 
 export const setFullscreenDialog = (fullscreenDialog) => ({
   type: 'SET_FULLSCREEN_DIALOG',
@@ -44,15 +43,12 @@ export const startAddLabel = (label) => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid
 
-    const newLabelRef = fs.collection(`users/${uid}/labels`).doc()
 
     dispatch(
       addLabel({
-        id: newLabelRef.id,
         ...label,
       })
     )
-    await newLabelRef.set({ ...label })
   }
 }
 
@@ -68,9 +64,6 @@ export const startEditLabel = (id, updates) => {
 
     dispatch(editLabel(id, updates))
 
-    await fs.doc(`users/${uid}/labels/${id}`).update({
-      ...updates,
-    })
   }
 }
 
@@ -85,7 +78,6 @@ export const startDeleteLabel = (id) => {
 
     dispatch(deleteLabel(id))
 
-    await fs.doc(`users/${uid}/labels/${id}`).delete()
   }
 }
 
@@ -98,19 +90,6 @@ export const startSetLabels = () => {
   return async (dispatch, getState) => {
     const uid = getState().auth.uid
 
-    try {
-      const labelsRef = await fs.collection(`users/${uid}/labels`).get()
-
-      const labels = labelsRef.docs.map((label) => ({
-        id: label.id,
-        ...label.data(),
-      }))
-
-      dispatch(setLabels(labels))
-
-      return labelsRef
-    } catch (e) {
-      dispatch(setLabels([]))
-    }
+dispatch(setLabels([]))
   }
 }

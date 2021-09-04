@@ -1,4 +1,3 @@
-import fs from '../../firebase/firebase'
 
 export const setWorkDuration = (duration) => ({
   type: 'SET_WORK_DURATION',
@@ -11,9 +10,6 @@ export const startSetWorkDuration = (duration) => {
 
     dispatch(setWorkDuration(duration))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { workDuration: duration } }, { merge: true })
   }
 }
 
@@ -28,9 +24,6 @@ export const startSetShortBreakDuration = (duration) => {
 
     dispatch(setShortBreakDuration(duration))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { shortBreakDuration: duration } }, { merge: true })
   }
 }
 
@@ -45,9 +38,6 @@ export const startSetLongBreakDuration = (duration) => {
 
     dispatch(setLongBreakDuration(duration))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { longBreakDuration: duration } }, { merge: true })
   }
 }
 
@@ -62,7 +52,6 @@ export const startSetRounds = (rounds) => {
 
     dispatch(setRounds(rounds))
 
-    await fs.doc(`users/${uid}`).set({ settings: { rounds } }, { merge: true })
   }
 }
 
@@ -77,9 +66,6 @@ export const startSetShowTimerInTitle = (showTimerInTitle) => {
 
     dispatch(setShowTimerInTitle(showTimerInTitle))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { showTimerInTitle } }, { merge: true })
   }
 }
 
@@ -94,9 +80,6 @@ export const startSetShowNotifications = (showNotifications) => {
 
     dispatch(setShowNotifications(showNotifications))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { showNotifications } }, { merge: true })
   }
 }
 
@@ -113,9 +96,6 @@ export const startSetDarkMode = (darkMode) => {
 
     dispatch(setDarkMode(darkMode))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { darkMode } }, { merge: true })
   }
 }
 
@@ -130,9 +110,6 @@ export const startSetAutostart = (autostart) => {
 
     dispatch(setAutostart(autostart))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { autostart } }, { merge: true })
   }
 }
 
@@ -147,9 +124,6 @@ export const startSetFirstDayOfTheWeek = (firstDayOfTheWeek) => {
 
     dispatch(setFirstDayOfTheWeek(firstDayOfTheWeek))
 
-    await fs
-      .doc(`users/${uid}`)
-      .set({ settings: { firstDayOfTheWeek } }, { merge: true })
   }
 }
 
@@ -163,12 +137,7 @@ export const startSetSettings = () => {
     const uid = getState().auth.uid
 
     try {
-      const docRef = await fs.doc(`users/${uid}`).get()
       let data = {}
-
-      if (docRef.exists) {
-        data = docRef.data().settings
-      }
 
       dispatch(setSettings(data))
     } catch (e) {
