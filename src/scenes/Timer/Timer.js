@@ -7,7 +7,6 @@ import { ResetButton } from './components/ResetButton'
 import { SkipButton } from './components/SkipButton'
 import { FullscreenDialog } from './components/Labels/FullscreenDialog'
 import { DesktopDialog } from './components/Labels/DesktopDialog'
-import { LabelButton } from './components/Labels/LabelButton'
 import { useMediaQuery, useTheme } from '@material-ui/core'
 
 export const Timer = () => {
@@ -27,7 +26,6 @@ export const Timer = () => {
 
   return (
     <Box width={getCircleSize()} m="auto">
-      <LabelButton />
       <CountdownCircle />
 
       <Box display="flex" justifyContent="center" alignItems="center" my={3}>
