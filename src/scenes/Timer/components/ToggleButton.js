@@ -148,6 +148,7 @@ export const ToggleButton = () => {
 	if (status === STATUSES.running && !savedInterval) {
 		startTimer();
 	}
+	// eslint-disable-next-line react-hooks/exhaustive-deps
   },[]);
 
   useEffect(() => {
