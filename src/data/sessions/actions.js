@@ -6,8 +6,8 @@ export const setSessions = (sessions) => ({
 
 export const startSetSessions = () => {
   return async (dispatch, getState) => {
-
-  dispatch(setSessions([]))
+  let session = JSON.parse(window.localStorage.getItem('session'));
+  dispatch(setSessions([session]))
   }
 }
 
@@ -19,6 +19,7 @@ export const addSession = (session) => ({
 export const startAddSession = (session) => {
   return async (dispatch, getState) => {
 
+	window.localStorage.setItem('session', JSON.stringify(session));
 
     dispatch(
       addSession({

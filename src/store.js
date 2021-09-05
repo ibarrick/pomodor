@@ -7,6 +7,13 @@ import { reducer as labelsReducer } from './data/labels/reducer'
 import { reducer as sessionsReducer } from './data/sessions/reducer'
 import { reducer as progressReducer } from './data/progress/reducer'
 import { reducer as timerReducer } from './scenes/Timer/data/timer/reducer'
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+	key: 'root',
+	storage
+};
 
 const appReducer = combineReducers({
   auth: authReducer,
@@ -17,12 +24,15 @@ const appReducer = combineReducers({
   progress: progressReducer,
 })
 
+const persistedReducer = persistReducer(persistConfig, appReducer);
+
 const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25 })
 
 export default () => {
   const store = createStore(
-    appReducer,
+    persistedReducer,
     composeEnhancers(applyMiddleware(thunk))
   )
-  return store
+  const persistor = persistStore(store);
+  return { store, persistor };
 }

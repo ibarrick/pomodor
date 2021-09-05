@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Box from '@material-ui/core/Box'
 import IconButton from '@material-ui/core/IconButton'
 import styled from 'styled-components'
@@ -28,6 +28,7 @@ export const ToggleButton = () => {
 
   const darkMode = useSelector((state) => +state.settings.darkMode)
   const darkModeCached = +JSON.parse(localStorage.getItem('darkMode'))
+  const [ savedInterval, setSavedInterval] = useState(null);
 
   const label = useSelector((state) => state.labels.labelSelected)
 
@@ -36,7 +37,7 @@ export const ToggleButton = () => {
   const audio = new Audio(chime)
 
   const startTimer = () => {
-    if (status === STATUSES.running) return
+    if (status === STATUSES.running && savedInterval) return
 
     if (settings.showNotifications && 'Notification' in window) {
       Notification.requestPermission()
@@ -100,6 +101,8 @@ export const ToggleButton = () => {
         clearInterval(interval)
       }
     }, 200)
+	console.log(interval);
+	setSavedInterval(interval);
 
     dispatch(saveInterval(interval))
   }
@@ -142,9 +145,15 @@ export const ToggleButton = () => {
   const isMount = useMounted()
 
   useEffect(() => {
+	if (status === STATUSES.running && !savedInterval) {
+		startTimer();
+	}
+  },[]);
+
+  useEffect(() => {
     if (isMount) return
 
-    if (settings.autostart) {
+    if (settings.autostart || (status === STATUSES.running && !savedInterval)) {
       startTimer()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
