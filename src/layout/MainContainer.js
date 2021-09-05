@@ -53,10 +53,10 @@ const FrontLayer = styled.main`
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  top: calc(133px + env(safe-area-inset-top));
+  top: calc(env(safe-area-inset-top));
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
-  height: calc(100% - 133px - env(safe-area-inset-top));
+  height: calc(100% - env(safe-area-inset-top));
   background: ${({ theme }) => theme.palette.background.default};
   overflow-y: auto;
   overflow-x: hidden;
