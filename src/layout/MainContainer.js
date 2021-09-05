@@ -54,8 +54,6 @@ const FrontLayer = styled.main`
   justify-content: space-between;
   position: relative;
   top: calc(env(safe-area-inset-top));
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
   height: calc(100% - env(safe-area-inset-top));
   background: ${({ theme }) => theme.palette.background.default};
   overflow-y: auto;
@@ -67,12 +65,10 @@ const FrontLayer = styled.main`
     sidenav &&
     css`
       position: absolute;
-      top: 64px;
+      top: 0px;
       right: 0;
       z-index: 1100;
-      border-top-left-radius: 33px;
-      border-top-right-radius: 0;
-      width: calc(100% - 92px);
-      min-height: calc(100% - 64px);
+      width: calc(100%);
+      min-height: calc(100%);
     `}
 `
